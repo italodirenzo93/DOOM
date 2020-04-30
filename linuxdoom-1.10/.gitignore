@@ -1,2 +1,10 @@
 # Build output
-linux/
+build/
+cmake-build-*/
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+
+*.sln
+*.vcxproj
+.idea/

@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "m_bbox.h": "c",
+    "sdl.h": "c"
+  }
+}

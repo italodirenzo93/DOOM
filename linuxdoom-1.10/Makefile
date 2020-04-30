@@ -6,12 +6,12 @@
 #
 CC=  gcc  # gcc or g++
 
-CFLAGS=-g -Wall -DNORMALUNIX -DLINUX -DSNDSERV -DSNDSRV # -DUSEASM 
+CFLAGS=-g -Wall -DNORMALUNIX -DLINUX -DSNDSERV -DSNDSRV # -DSDL # -DUSEASM
 LDFLAGS=-L/usr/X11R6/lib
 LIBS=-lXext -lX11 -lnsl -lm -lSDL2 -lSDL2main
 
 # subdirectory for objects
-O=linux
+O=build
 
 # not too sophisticated dependency
 OBJS=				\

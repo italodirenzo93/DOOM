@@ -1,4 +1,4 @@
-// Emacs style mode select   -*- C++ -*- 
+// Emacs style mode select   -*- C++ -*-
 //-----------------------------------------------------------------------------
 //
 // $Id:$
@@ -23,6 +23,9 @@
 static const char
 rcsid[] = "$Id: m_bbox.c,v 1.1 1997/02/03 22:45:10 b1 Exp $";
 
+#ifdef SDL
+#include <SDL.h>
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -91,7 +94,7 @@ int  I_GetTime (void)
     struct timezone	tzp;
     int			newtics;
     static int		basetime=0;
-  
+
     gettimeofday(&tp, &tzp);
     if (!basetime)
 	basetime = tp.tv_sec;
@@ -126,12 +129,12 @@ void I_Quit (void)
 void I_WaitVBL(int count)
 {
 #ifdef SGI
-    sginap(1);                                           
+    sginap(1);
 #else
 #ifdef SUN
     sleep(0);
 #else
-    usleep (count * (1000000/70) );                                
+    usleep (count * (1000000/70) );
 #endif
 #endif
 }
@@ -147,7 +150,7 @@ void I_EndRead(void)
 byte*	I_AllocLow(int length)
 {
     byte*	mem;
-        
+
     mem = (byte *)malloc (length);
     memset (mem,0,length);
     return mem;
@@ -164,6 +167,7 @@ void I_Error (char *error, ...)
     va_list	argptr;
 
     // Message first.
+    #ifndef SDL
     va_start (argptr,error);
     fprintf (stderr, "Error: ");
     vfprintf (stderr,error,argptr);
@@ -171,6 +175,11 @@ void I_Error (char *error, ...)
     va_end (argptr);
 
     fflush( stderr );
+    #else
+    va_start(argptr,error);
+    SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, error);
+    va_end(argptr);
+    #endif
 
     // Shutdown. Here might be other errors.
     if (demorecording)
@@ -178,6 +187,6 @@ void I_Error (char *error, ...)
 
     D_QuitNetGame ();
     I_ShutdownGraphics();
-    
+
     exit(-1);
 }
