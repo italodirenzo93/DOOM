@@ -27,6 +27,7 @@
 static const char
 rcsid[] = "$Id: v_video.c,v 1.5 1997/02/03 22:45:13 b1 Exp $";
 
+#include <SDL2/SDL.h>
 
 #include "i_system.h"
 #include "r_local.h"
@@ -481,13 +482,26 @@ V_GetBlock
 // 
 void V_Init (void) 
 { 
-    int		i;
-    byte*	base;
+    // int		i;
+    // byte*	base;
 		
-    // stick these in low dos memory on PCs
+    // // stick these in low dos memory on PCs
 
-    base = I_AllocLow (SCREENWIDTH*SCREENHEIGHT*4);
+    // base = I_AllocLow (SCREENWIDTH*SCREENHEIGHT*4);
 
-    for (i=0 ; i<4 ; i++)
-	screens[i] = base + i*SCREENWIDTH*SCREENHEIGHT;
+    // for (i=0 ; i<4 ; i++)
+	// screens[i] = base + i*SCREENWIDTH*SCREENHEIGHT;
+
+    if (SDL_InitSubSystem(SDL_INIT_VIDEO) != 0)
+    {
+        SDL_LogError(
+            SDL_LOG_CATEGORY_APPLICATION,
+            "Could not initialize the video subsystem...\n%s",
+            SDL_GetError()
+        );
+    }
+    else
+    {
+        SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "SDL Video subsystem initialized!");
+    }
 }
