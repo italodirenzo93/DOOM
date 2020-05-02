@@ -77,4 +77,4 @@ add_executable(linuxdoom_1_10
         wi_stuff.c
         z_zone.c)
 
-target_link_libraries(linuxdoom_1_10 ${SDL_LIBS} ${OPENGL_LIBRARIES})
+target_link_libraries(linuxdoom_1_10 ${SDL2_LIBRARIES})
