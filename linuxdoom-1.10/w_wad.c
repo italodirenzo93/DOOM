@@ -303,7 +303,7 @@ void W_InitMultipleFiles (char** filenames)
 	W_AddFile (*filenames);
 
     if (!numlumps)
-	I_Error ("W_InitFiles: no files found");
+	I_Error ("W_InitFiles: no WAD files found");
 
     // set up caching
     size = numlumps * sizeof(*lumpcache);

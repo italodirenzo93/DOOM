@@ -167,7 +167,6 @@ void I_Error (char *error, ...)
     va_list	argptr;
 
     // Message first.
-    #ifndef SDL
     va_start (argptr,error);
     fprintf (stderr, "Error: ");
     vfprintf (stderr,error,argptr);
@@ -175,11 +174,6 @@ void I_Error (char *error, ...)
     va_end (argptr);
 
     fflush( stderr );
-    #else
-    va_start(argptr,error);
-    SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, error);
-    va_end(argptr);
-    #endif
 
     // Shutdown. Here might be other errors.
     if (demorecording)

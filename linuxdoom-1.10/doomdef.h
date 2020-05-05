@@ -280,6 +280,7 @@ typedef enum
 #define KEY_LALT	KEY_RALT
 
 #define STUBBED(x)  printf("STUBBED: %s\n", x)
+#define TRACE(x)    printf("TRACE: %s\n", x)
 
 // DOOM basic types (boolean),
 //  and max/min values.

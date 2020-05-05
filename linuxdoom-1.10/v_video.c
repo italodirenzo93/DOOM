@@ -504,7 +504,8 @@ void V_Init (void)
     }
     else
     {
-        SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "SDL Video subsystem initialized!");
+        //SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "SDL Video subsystem initialized!");
+        printf("SDL Video subsystem initialized!\n");
     }
 
     #endif
